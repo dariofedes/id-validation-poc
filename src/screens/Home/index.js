@@ -4,15 +4,7 @@ import { Header, Button, StatusBorder, StatusLabel, Context } from '../../compon
 import literals from './literals'
 import styles from './styles'
 
-export default function Home(props) {
-    const [state, setState] = useContext(Context)
-
-    const { status, photo } = state
-
-    function handleOnTakePicture() {
-        setState({ ...state, takePicture: true })
-    }
-
+export default function Home({ status, photo, onTakePicture }) {
     return (
         <View style={styles.container}>
             <Header />
@@ -21,8 +13,8 @@ export default function Home(props) {
                 <Text style={styles.description}>Take a picture. It may take time to validate your personal information</Text>
             </View>
             <StatusBorder status={status}>
-                <ImageBackground imageStyle={{ borderRadius: 18 }} style={{ width: 300, height: 200, alignItems: 'center', justifyContent: 'center' }} source={photo ? { uri: photo.uri } : require('../../../assets/images/id-card.png')}>
-                    {status !== 'accepted' && <Button title={status ? literals.buttonTitle[status] : literals.buttonTitle.pending} onPress={handleOnTakePicture} />}
+                <ImageBackground imageStyle={{ borderRadius: 18 }} style={styles.idCardImage} source={photo ? { uri: photo.uri } : require('../../../assets/images/id-card.png')}>
+                    {status !== 'accepted' && <Button title={literals.buttonTitle[status]} onPress={onTakePicture} />}
                     {photo && <StatusLabel status={status} />}
                 </ImageBackground>
             </StatusBorder>

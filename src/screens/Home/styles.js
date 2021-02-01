@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
         color: colorPalette.darkText,
         textAlign: 'center',
     },
+    idCardImage: {
+        width: 300,
+        height: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })
 
 export default styles
